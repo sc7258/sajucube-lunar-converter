@@ -1,0 +1,67 @@
+{
+  "name": "k-lunar",
+  "version": "0.1.0",
+  "description": "Fork workspace of lunar-javascript for KST-based timeline handling and Gregorian calendar conversion across all supported dates.",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "require": "./dist/src/index.js",
+      "default": "./dist/src/index.js"
+    },
+    "./lunar": {
+      "types": "./dist/src/lunar.d.ts",
+      "require": "./dist/src/lunar.js",
+      "default": "./dist/src/lunar.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/src",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\"",
+    "prepack": "npm run clean && npm run build",
+    "test": "npm run build && jest --runInBand dist/__tests__/Solar.test.js dist/__tests__/Lunar.test.js dist/__tests__/SolarUtil.test.js dist/__tests__/k-lunar.regression.test.js",
+    "harness": "npm run harness:smoke && npm run harness:report",
+    "harness:smoke": "npm run build && node dist/scripts/codex-smoke.js",
+    "harness:report": "npm run build && node dist/scripts/codex-report.js",
+    "generate:kasi:historical": "npx tsx scripts/generate-kasi-historical-data.ts",
+    "verify:reference": "npm run build && node dist/scripts/verify-korean-reference.js",
+    "verify:kasi:samples": "npm run build && node dist/scripts/verify-kasi-reference.js",
+    "verify:kasi:years": "npm run build && node dist/scripts/verify-kasi-year-scan.js"
+  },
+  "keywords": [
+    "calendar",
+    "lunar",
+    "solar",
+    "korean-calendar",
+    "kst",
+    "gregorian"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sc7258/sajucube-lunar-converter.git",
+    "directory": "k-lunar"
+  },
+  "bugs": {
+    "url": "https://github.com/sc7258/sajucube-lunar-converter/issues"
+  },
+  "homepage": "https://github.com/sc7258/sajucube-lunar-converter/tree/main/k-lunar",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "korean-lunar-calendar": "^0.3.6",
+    "typescript": "^5.8.3"
+  }
+}

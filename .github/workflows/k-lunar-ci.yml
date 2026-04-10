@@ -1,0 +1,50 @@
+name: k-lunar CI
+
+on:
+  push:
+    paths:
+      - "k-lunar/**"
+      - ".github/workflows/k-lunar-ci.yml"
+  pull_request:
+    paths:
+      - "k-lunar/**"
+      - ".github/workflows/k-lunar-ci.yml"
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: k-lunar
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: k-lunar/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run test suite
+        run: npm test
+
+      - name: Run smoke harness
+        run: npm run harness:smoke
+
+      - name: Run report harness
+        run: npm run harness:report
+
+      - name: Verify reference alignment
+        run: npm run verify:reference
+
+      - name: Verify KASI sample alignment
+        run: npm run verify:kasi:samples
+
+      - name: Check package contents
+        run: npm pack --dry-run
