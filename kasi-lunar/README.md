@@ -4,11 +4,8 @@
 
 ## 배경
 
-기존 라이브러리인 [korean-lunar-calendar](https://github.com/usingsky/korean_lunar_calendar_js)는 KASI 데이터를 기반으로 하지만 **서기 1000년 이후**만 지원합니다.
-`kasi-lunar`는 이 한계를 해소하여 KASI가 제공하는 **기원전 59년부터 서기 2050년까지** 전체 범위를 지원하기 위해 만들어졌습니다.
-
-- `1000..2050`: `korean-lunar-calendar`에 위임
-- `-59..999`: KASI 월별 달력 페이지에서 직접 수집한 생성 데이터 사용
+기존 라이브러리들이 지원하지 않던 고대 연도를 포함해 KASI가 제공하는 **기원전 59년부터 서기 2050년까지**의 전체 달력 범위를 완벽하게 지원하기 위해 만들어졌습니다.
+외부 패키지 의존성(Zero Dependency) 없이, KASI 웹사이트에서 전수 수집 및 검증한 데이터를 바탕으로 빠르고 정확하게 변환합니다.
 
 ## 지원 범위
 
@@ -53,11 +50,18 @@ console.log(calendar.getSolarCalendar());
 ## 스크립트
 
 - `npm run generate:data`: KASI 월별 달력 페이지에서 초기 데이터 재생성
-- `npm run check`: 소스 타입 검사
 - `npm run build`: `dist`에 ESM, CJS, 타입 선언 빌드
-- `npm test`: 빌드 후 검증 스크립트 실행
-- `npm run harness:smoke`: 빠른 Codex 스모크 체크
 - `npm run harness:report`: 현재 하네스 연결 상태 리포트
+
+### 테스트
+
+프로젝트의 무결성 검증을 위해 아래 스크립트들을 제공합니다. 모든 검증 과정을 한 번에 순차적으로 실행하려면 **`npm run test:all`** 명령어를 사용하세요.
+
+- `npm run check`: 소스 타입 정적 검사
+- `npm run harness:smoke`: 빠른 빌드 확인 및 스모크 테스트
+- `npm test`: 고대 연도 중의성 등 핵심 엣지 케이스 점검
+- `npm run test:sample-full`: 전체 지원 기간에 대한 샘플 날짜 및 월말 라운드트립 최종 검증
+- `npm run test:all`: 위의 4가지 검증 과정을 한 번에 모두 실행
 
 ## 배포
 

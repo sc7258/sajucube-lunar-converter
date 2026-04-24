@@ -1,6 +1,6 @@
 {
   "name": "kasi-lunar",
-  "version": "0.8.1",
+  "version": "1.0.1",
   "description": "TypeScript lunar calendar library aligned to the KASI supported conversion range.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -27,6 +27,8 @@
     "harness:smoke": "npm run build && node scripts/codex-smoke.cjs",
     "harness:report": "node scripts/codex-report.cjs",
     "test": "npm run build && node scripts/verify-build.mjs",
+    "test:sample-full": "npm run build && node scripts/verify-sample-full.mjs",
+    "test:all": "npm run check && npm run harness:smoke && npm test && npm run test:sample-full",
     "prepublishOnly": "npm run check && npm run test"
   },
   "keywords": [
@@ -37,7 +39,6 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "korean-lunar-calendar": "^0.3.6",
     "tsup": "^8.5.0",
     "typescript": "^5.8.3"
   }

@@ -6,8 +6,8 @@
 
 구현은 두 가지 경로로 나뒥니다:
 
-- `1000..2050`: `korean-lunar-calendar`에 위임
-- `-59..999`: 생성된 KASI 월별 달력 데이터 사용
+- 양력 `1000-02-13..2050-12-31`, 음력 `1000..2050`: `korean-lunar-calendar`에 위임
+- 나머지 지원 구간: 생성된 KASI 월별 달력 데이터 사용
 
 ## 주요 모듈
 
@@ -69,9 +69,9 @@ KASI 월별 달력 페이지를 크롤링하여 `src/early-data.ts`를 생성합
 
 ### 위임 범위
 
-`solarYear >= 1000` 또는 `lunarYear >= 1000`인 경우 `korean-lunar-calendar`를 직접 사용합니다.
+양력 JDN이 `1000-02-13` 이상이거나 음력 연도가 `1000` 이상인 경우 `korean-lunar-calendar`를 직접 사용합니다.
 
-현대 범위를 단순하게 유지하고 상위 패키지와 일치시킵니다.
+이렇게 하면 양력 `1000-01-01..1000-02-12`처럼 음력 `999`년에 속하는 경계 날짜는 초기 데이터 경로에서 계속 처리할 수 있습니다.
 
 ### 초기 범위
 
@@ -105,5 +105,7 @@ KASI 월별 달력 페이지를 크롤링하여 `src/early-data.ts`를 생성합
 - `npm run harness:smoke`
 - `npm run harness:report`
 - `npm test`
+- `npm run test:sample-full`
 
 `scripts/verify-build.mjs`는 경계 케이스와 중의적인 초기 월 케이스를 포함합니다.
+`scripts/verify-sample-full.mjs`는 전체 지원 기간에 대한 샘플 날짜와 월말 라운드트립을 확인합니다.

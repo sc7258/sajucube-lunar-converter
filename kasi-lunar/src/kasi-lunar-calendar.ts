@@ -1,5 +1,3 @@
-import KoreanLunarCalendar from "korean-lunar-calendar";
-
 import {
   EARLY_LUNAR_YEAR_END,
   EARLY_LUNAR_YEAR_START,
@@ -174,8 +172,6 @@ function formatGapja(
 }
 
 export default class KasiLunarCalendar {
-  private readonly delegate = new KoreanLunarCalendar();
-
   private mode: Mode = "none";
 
   private earlyMonthIndex: number | null = null;
@@ -217,13 +213,6 @@ export default class KasiLunarCalendar {
     }
 
     return undefined;
-  }
-
-  private copyFromDelegate(): void {
-    this.solarCalendar = { ...this.delegate.getSolarCalendar() };
-    this.lunarCalendar = { ...this.delegate.getLunarCalendar() };
-    this.earlyMonthIndex = null;
-    this.mode = "delegate";
   }
 
   private findEarlyMonthIndex(
@@ -307,16 +296,8 @@ export default class KasiLunarCalendar {
       return false;
     }
 
-    if (solarYear >= 1000) {
-      if (!this.delegate.setSolarDate(solarYear, solarMonth, solarDay)) {
-        return false;
-      }
-
-      this.copyFromDelegate();
-      return true;
-    }
-
     const jdn = gregorianToJdn(solarYear, solarMonth, solarDay);
+
     const yearData = this.findEarlyYearByJdn(jdn);
 
     if (!yearData) {
@@ -365,22 +346,6 @@ export default class KasiLunarCalendar {
       return false;
     }
 
-    if (lunarYear >= 1000) {
-      if (
-        !this.delegate.setLunarDate(
-          lunarYear,
-          lunarMonth,
-          lunarDay,
-          isIntercalation,
-        )
-      ) {
-        return false;
-      }
-
-      this.copyFromDelegate();
-      return true;
-    }
-
     const yearData = this.findEarlyYearData(lunarYear);
 
     if (!yearData) {
@@ -424,18 +389,10 @@ export default class KasiLunarCalendar {
     cheongan: { year: number; month: number; day: number };
     ganji: { year: number; month: number; day: number };
   } {
-    if (this.mode === "delegate") {
-      return this.delegate.getGapJaIndex();
-    }
-
     return this.getEarlyGapJaIndex();
   }
 
   getGapja(isChinese = false): GapJaData {
-    if (this.mode === "delegate") {
-      return this.delegate.getGapja(isChinese);
-    }
-
     return formatGapja(
       this.getEarlyGapJaIndex(),
       Boolean(this.lunarCalendar.intercalation),
