@@ -76,8 +76,8 @@ function verifySourceEarlyData() {
   } = loadSourceEarlyData();
 
   assert.equal(EARLY_LUNAR_YEAR_START, -59);
-  assert.equal(EARLY_LUNAR_YEAR_END, 999);
-  assert.equal(KASI_EARLY_LUNAR_DATA.length, 1059);
+  assert.equal(EARLY_LUNAR_YEAR_END, 2050);
+  assert.equal(KASI_EARLY_LUNAR_DATA.length, 2110);
 
   const specialMonthLabels = [];
   const ambiguousMonthLabels = [];
@@ -148,15 +148,15 @@ testSolarToLunar(
 );
 testSolarToLunar(
   { year: 1000, month: 2, day: 13 },
-  { year: 1000, month: 1, day: 1, intercalation: false },
+  { year: 1000, month: 1, day: 1, intercalation: false, monthLabel: "01" },
 );
 testSolarToLunar(
   { year: 2023, month: 3, day: 22 },
-  { year: 2023, month: 2, day: 1, intercalation: true },
+  { year: 2023, month: 2, day: 1, intercalation: true, monthLabel: "02" },
 );
 testSolarToLunar(
   { year: 2050, month: 12, day: 31 },
-  { year: 2050, month: 11, day: 18, intercalation: false },
+  { year: 2050, month: 11, day: 18, intercalation: false, monthLabel: "11" },
 );
 testSolarToLunar(
   { year: 1000, month: 1, day: 1 },
@@ -168,7 +168,7 @@ testSolarToLunar(
 );
 testSolarToLunar(
   { year: 1000, month: 2, day: 13 },
-  { year: 1000, month: 1, day: 1, intercalation: false },
+  { year: 1000, month: 1, day: 1, intercalation: false, monthLabel: "01" },
 );
 
 testLunarToSolar(
@@ -278,11 +278,11 @@ testSolarToLunar(
   expectCalendar(cal.getLunarCalendar(), { year: 768, month: 3, day: 31, intercalation: false, monthLabel: "03" });
 }
 
-// 라운드트립 검증: -59..999 전 범위 매월 5, 15, 25일
+// 라운드트립 검증: -59..2050 전 범위 매월 5, 15, 25일
 {
   let checked = 0;
   let skipped = 0;
-  for (let y = -59; y <= 999; y++) {
+  for (let y = -59; y <= 2050; y++) {
     for (let m = 1; m <= 12; m++) {
       for (const d of [5, 15, 25]) {
         const cal = new KasiLunarCalendar();
