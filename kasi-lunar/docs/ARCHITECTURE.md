@@ -100,12 +100,12 @@ KASI 월별 달력 페이지를 크롤링하여 `src/early-data.ts`를 생성합
 
 주요 명령어:
 
-- `npm run generate:data`
-- `npm run check`
-- `npm run harness:smoke`
-- `npm run harness:report`
-- `npm test`
-- `npm run test:sample-full`
+- `bun run generate:data`
+- `bun run check`
+- `bun run harness:smoke`
+- `bun run harness:report`
+- `bun test`
+- `bun run test:sample-full`
 
 `scripts/verify-build.mjs`는 경계 케이스와 중의적인 초기 월 케이스를 포함합니다.
 `scripts/verify-sample-full.mjs`는 전체 지원 기간에 대한 샘플 날짜와 월말 라운드트립을 확인합니다.

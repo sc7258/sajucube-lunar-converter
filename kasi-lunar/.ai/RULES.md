@@ -13,9 +13,9 @@
 
 ## 검증 순서
 
-1. `npm run harness:smoke`
-2. `npm run harness:report`
-3. 동작 또는 공개 API 변경 시 `npm test`
+1. `bun run harness:smoke`
+2. `bun run harness:report`
+3. 동작 또는 공개 API 변경 시 `bun test`
 
 ## 문서화
 

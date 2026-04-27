@@ -31,6 +31,6 @@
 ## Verification Loop
 
 1. Make the smallest focused change
-2. Run `npm run harness:smoke`
-3. Run `npm run harness:report`
-4. Run `npm test` when the change affects behavior or public API
+2. Run `bun run harness:smoke`
+3. Run `bun run harness:report`
+4. Run `bun test` when the change affects behavior or public API

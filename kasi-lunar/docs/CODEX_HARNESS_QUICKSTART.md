@@ -103,8 +103,8 @@ Codex의 루트 진입점으로 사용합니다.
 3. `.ai/RULES.md` 읽기
 4. `.ai/PLAN.md` 읽기
 5. 집중적인 코드 변경 수행
-6. `harness:smoke` 실행
-7. `harness:report` 실행
+6. `bun run harness:smoke` 실행
+7. `bun run harness:report` 실행
 8. 필요 시 전체 테스트 스위트 실행
 
 ## 권장 레이아웃

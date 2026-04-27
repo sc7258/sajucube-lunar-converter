@@ -17,7 +17,7 @@
 ## 설치
 
 ```bash
-npm install kasi-lunar
+bun install kasi-lunar
 ```
 
 ## 사용법
