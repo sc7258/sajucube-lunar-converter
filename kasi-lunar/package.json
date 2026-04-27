@@ -1,7 +1,7 @@
 {
   "name": "kasi-lunar",
-  "version": "1.0.2",
-  "description": "TypeScript lunar calendar library aligned to the KASI supported conversion range.",
+  "version": "1.0.3",
+  "description": "한국천문연구원(KASI) 기준 음양력 변환 TypeScript Library (-59~2050년 지원)",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -24,12 +24,12 @@
     "generate:data": "node scripts/generate-early-data.mjs",
     "build": "tsup src/index.ts --format esm,cjs --dts --clean",
     "check": "tsc --noEmit",
-    "harness:smoke": "npm run build && node scripts/codex-smoke.cjs",
+    "harness:smoke": "bun run build && node scripts/codex-smoke.cjs",
     "harness:report": "node scripts/codex-report.cjs",
-    "test": "npm run build && node scripts/verify-build.mjs",
-    "test:sample-full": "npm run build && node scripts/verify-sample-full.mjs",
-    "test:all": "npm run check && npm run harness:smoke && npm test && npm run test:sample-full",
-    "prepublishOnly": "npm run check && npm run test"
+    "test": "bun run build && node scripts/verify-build.mjs",
+    "test:sample-full": "bun run build && node scripts/verify-sample-full.mjs",
+    "test:all": "bun run check && bun run harness:smoke && bun run test && bun run test:sample-full",
+    "prepublishOnly": "bun run check && bun run test"
   },
   "keywords": [
     "lunar",
@@ -39,10 +39,8 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "korean-lunar-calendar": "^0.3.6",
     "tsup": "^8.5.0",
     "typescript": "^5.8.3"
-  },
-  "dependencies": {
-    "kasi-lunar": "^1.0.2"
   }
 }

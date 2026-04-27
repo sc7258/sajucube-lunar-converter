@@ -5,7 +5,7 @@
 ## 배경
 
 기존 라이브러리들이 지원하지 않던 고대 연도를 포함해 KASI가 제공하는 **기원전 59년부터 서기 2050년까지**의 전체 달력 범위를 완벽하게 지원하기 위해 만들어졌습니다.
-외부 패키지 의존성(Zero Dependency) 없이, KASI 웹사이트에서 전수 수집 및 검증한 데이터를 바탕으로 빠르고 정확하게 변환합니다.
+외부 패키지 의존성(Zero Dependency) 없이 단독으로 동작하며, KASI 웹사이트에서 전수 수집 및 검증한 내부 데이터(`src/early-data.ts`)를 바탕으로 빠르고 정확하게 변환합니다. (참고: `korean-lunar-calendar`는 검증 및 테스트를 위한 개발 의존성으로만 사용됩니다.)
 
 ## 지원 범위
 
@@ -32,8 +32,8 @@ console.log(calendar.getLunarCalendar());
 // { year: 2023, month: 2, day: 1, intercalation: true }
 ```
 
-고대 연도의 경우 KASI 데이터에 같은 숫자 월명이 중복으로 존재할 수 있습니다.
-이 경우 `monthLabel`로 `正`과 `01` 등을 구별합니다.
+서기 1000년 이전의 특정 고대 연도(특히 서기 696~700년 등)의 경우 KASI 데이터에 같은 숫자 월명이 중복으로 존재할 수 있습니다.
+이 경우 `monthLabel` 인자를 사용하여 `正`과 `01` 등을 명확하게 구별해야 합니다.
 
 ```ts
 const calendar = new KasiLunarCalendar();
