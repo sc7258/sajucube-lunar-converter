@@ -8,16 +8,15 @@
 
 ## 최근 완료
 
-- 전체 데이터 라운드트립 테스트 통과 및 버전을 `1.0.1`로 갱신 완료
+- 전체 데이터 라운드트립 테스트 통과 및 배포 후보 버전을 `1.0.4`로 갱신 완료
 - `正`/`01`, `臘`/`12` 중의성 케이스를 `scripts/verify-build.mjs`에 명시적 테스트로 고정 완료
+- `package.json` 및 문서 변경을 커밋하여 현재 작업 트리를 정리 완료
+- `bun run harness:smoke`, `bun run harness:report`를 최신 상태에서 재실행해 통과 확인 완료
 
 ## 현재 우선순위
 
-1. 방금 수정한 `package.json`과 문서 파일들을 먼저 Git에 커밋 (완료)
-2. 계획된 768년 엣지 케이스 테스트 코드 작성 (`scripts/verify-build.mjs`) (완료)
-3. `bun run test:all`로 프로젝트 전체를 검증 (완료)
-4. `npm version patch`를 실행하거나 직접 `package.json` 버전을 수정하여 버전 업데이트 (진행 중)
-5. `bun publish`로 최종 배포 진행
+1. `bun publish`로 최종 배포 진행
+2. 배포 중 이슈가 생기면 `bun test` 또는 `bun run test:all` 재실행 여부 판단
 
 ## 다음에 판단할 일
 

@@ -1,6 +1,6 @@
 {
   "name": "kasi-lunar",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "한국천문연구원(KASI) 기준 음양력 변환 TypeScript Library (-59~2050년 지원)",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -37,6 +37,15 @@
     "kasi",
     "typescript"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sc7258/sajucube-lunar-converter.git",
+    "directory": "kasi-lunar"
+  },
+  "homepage": "https://github.com/sc7258/sajucube-lunar-converter/tree/main/kasi-lunar#readme",
+  "bugs": {
+    "url": "https://github.com/sc7258/sajucube-lunar-converter/issues"
+  },
   "license": "MIT",
   "devDependencies": {
     "korean-lunar-calendar": "^0.3.6",

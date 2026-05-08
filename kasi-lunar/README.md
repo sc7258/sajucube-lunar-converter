@@ -17,8 +17,21 @@
 ## 설치
 
 ```bash
-bun install kasi-lunar
+npm install kasi-lunar
 ```
+
+```bash
+bun add kasi-lunar
+```
+
+```bash
+pnpm add kasi-lunar
+```
+
+## 요구 사항
+
+- Node.js `18+`
+- 외부 런타임 의존성 없음 (Zero Dependency)
 
 ## 사용법
 
@@ -31,6 +44,8 @@ calendar.setSolarDate(2023, 3, 22);
 console.log(calendar.getLunarCalendar());
 // { year: 2023, month: 2, day: 1, intercalation: true }
 ```
+
+`setSolarDate()` 또는 `setLunarDate()`로 기준 날짜를 설정한 뒤, `getSolarCalendar()`와 `getLunarCalendar()`로 변환 결과를 읽는 방식입니다.
 
 서기 1000년 이전의 특정 고대 연도(특히 서기 696~700년 등)의 경우 KASI 데이터에 같은 숫자 월명이 중복으로 존재할 수 있습니다.
 이 경우 `monthLabel` 인자를 사용하여 `正`과 `01` 등을 명확하게 구별해야 합니다.
@@ -63,8 +78,13 @@ console.log(calendar.getSolarCalendar());
 - `npm run test:sample-full`: 전체 지원 기간에 대한 샘플 날짜 및 월말 라운드트립 최종 검증
 - `npm run test:all`: 위의 4가지 검증 과정을 한 번에 모두 실행
 
+## 프로젝트 링크
+
+- Repository: `https://github.com/sc7258/sajucube-lunar-converter/tree/main/kasi-lunar`
+- Issues: `https://github.com/sc7258/sajucube-lunar-converter/issues`
+
 ## 배포
 
 ```bash
-npm publish
+bun publish
 ```
